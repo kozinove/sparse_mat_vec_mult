@@ -9,7 +9,7 @@ default: build
 build: mkl_mv
 
 mkl_mv: $(OBJS)
-		$(CC) $(OPTC) -o$@ $? -L../util -lutil
+		$(CC) $(OPTC) -o$@ $? -L../utils -lutils
 	
 .c.o:
 		$(CC) $(OPTC) -c $*.c $(OUTC)$*.o

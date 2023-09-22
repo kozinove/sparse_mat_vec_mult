@@ -5,9 +5,9 @@ OBJS  = MatMV.o readFile.o mmio.o
 
 default: build
 
-build: $(LIBPREF)util$(PLAT)$(LIBEXT)
+build: $(LIBPREF)utils$(PLAT)$(LIBEXT)
 
-$(LIBPREF)util$(PLAT)$(LIBEXT): $(OBJS)
+$(LIBPREF)utils$(PLAT)$(LIBEXT): $(OBJS)
 		$(AR)$@ $?
 		$(RANLIB) $@
 	

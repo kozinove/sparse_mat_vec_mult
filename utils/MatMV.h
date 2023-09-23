@@ -13,6 +13,8 @@ void GenerateSolution(int* col, int* row, FLOAT_TYPE* val,
 						  
 void toZeroBase(int n, int* RowIndex, int* ColIndex);
 
+void stat(int n, int* RowIndex, int* ColIndex);
+
 FLOAT_TYPE CheckError(int n, int* col, int* row, FLOAT_TYPE* val, FLOAT_TYPE* b, FLOAT_TYPE* x);
 
 #endif

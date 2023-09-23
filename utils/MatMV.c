@@ -8,6 +8,32 @@
 
 #include "MatMV.h"
 
+void stat(int n, int* RowIndex, int* ColIndex)
+{
+  int min_elem=1000000;
+  int max_elem=0;
+  
+  double avg = (double)RowIndex[n] / (double)n;
+  double q = 0.0;
+  
+  for(int i = 0; i < n; i++)
+  {
+    int s = RowIndex[i];
+    int f = RowIndex[i+1];
+    int d = f - s; 
+    if(min_elem > d) min_elem = d; 
+    if(max_elem < d) max_elem = d; 
+    q += (avg - d) * (avg - d);
+  }
+  
+  q /= n;
+  q = sqrt(q);
+  
+  printf("min_elem : %d\n", min_elem);
+  printf("max_elem : %d\n", max_elem);
+  printf("q : %lf\n", q);
+}
+
 //typedef std::chrono::high_resolution_clock Clock;
 
 void toOneBase(int n, int* RowIndex, int* ColIndex)

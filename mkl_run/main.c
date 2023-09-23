@@ -25,11 +25,19 @@ int main(int argc, char **argv)
   FLOAT_TYPE* x;		// вектор неизвестных
   FLOAT_TYPE err;		// численная ошибка решения
   
+  int cntItr = 1;
+  
   if (argc < 1)
   {
 	  printf("Args: [1] matrix_file\n");
     return 0;
   }
+  
+  if (argc > 2)
+  {
+    cntItr = atoi(argv[2]);
+  }
+  
   // чтение матрицы
   error = ReadMTXFile(argv[1], &n, &nz, &ColIndex, &RowCoo, &Value);
   // создание массива RowIndex для конвертации в CSR
@@ -40,6 +48,7 @@ int main(int argc, char **argv)
 	  printf("error in read file\n");
 	  return 1;
   }
+  printf("cntItr: %d\n", cntItr);
   printf("n: %d\nnz: %d\n", n, nz);
   
   b = (FLOAT_TYPE*) malloc(sizeof(FLOAT_TYPE) * n);
@@ -63,7 +72,7 @@ int main(int argc, char **argv)
   toOneBase(n, RowIndex, ColIndex);
 
   double min_time= 1000.0;
-  for(int i = 0; i < 5; i++)
+  for(int i = 0; i < cntItr; i++)
   {
     double start = omp_get_wtime();
     MatMV(n, ColIndex, RowIndex, Value, x, b);
@@ -75,6 +84,8 @@ int main(int argc, char **argv)
   printf("Mat Vector Mult Time: %f s\n diff: %lf %lf %e\n", min_time, res, b[0], fabs(res-b[0]));
   // приведение индексации с 0
   toZeroBase(n, RowIndex, ColIndex);
+  
+  stat(n, RowIndex, ColIndex);
   
   // освобождение памяти
   free(RowCoo);

@@ -31,6 +31,7 @@ void stat(int n, int* RowIndex, int* ColIndex)
   
   printf("min_elem : %d\n", min_elem);
   printf("max_elem : %d\n", max_elem);
+  printf("avg : %lf\n", avg);
   printf("q : %lf\n", q);
 }
 

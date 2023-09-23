@@ -41,6 +41,10 @@ for($i = 0; $i < 5; $i++)
   {
     $q = $1;
   }
+  if ($res =~ /avg : (.+)\n/)
+  {
+    $avg = $1;
+  }
 
 #  print "$str1|$time|$str2\n";
   
@@ -51,4 +55,4 @@ for($i = 0; $i < 5; $i++)
 $min_time = min @times;
 
 #print $str1.": ".$min_time.$str2."\n";
-print "$n\t$nz\t$min_time\t$min_elem\t$max_elem\t$q\t$err";
+print "$n\t$nz\t$min_time\t$min_elem\t$max_elem\t$avg\t$q\t$err";
